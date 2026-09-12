@@ -1,0 +1,15 @@
+services:
+  flytrack:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Please set ADMIN_PASSWORD in .env}
+      ADMIN_DISPLAY_NAME: ${ADMIN_DISPLAY_NAME:-实验室管理员}
+      DATA_DIR: /data
+      COOKIE_SECURE: ${COOKIE_SECURE:-0}
+      PORT: ${PORT:-8000}
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

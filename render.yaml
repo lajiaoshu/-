@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: flytrack-cloud
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    envVars:
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_DISPLAY_NAME
+        value: 实验室管理员
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: flytrack-data
+      mountPath: /var/data
+      sizeGB: 1
